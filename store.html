@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Generics | Store</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="main-header">
+            <nav class="main-nav nav">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="store.html">STORE</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">The Generics</h1>
+        </header>
+        <section class="container content-section">
+            <h2 class="section-header">MUSIC</h2>
+            <div class="shop-items">
+                <div class="shop-item">
+                    <span class="shop-item-title">Album 1</span>
+                    <img class="shop-item-image" src="Images/Album 1.png">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">$12.99</span>
+                        <button onclick="Add('Album1')" class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Album 2</span>
+                    <img class="shop-item-image" src="Images/Album 2.png">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">$14.99</span>
+                        <button onclick="Add('Album2')" class="btn btn-primary shop-item-button"type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Album 3</span>
+                    <img class="shop-item-image" src="Images/Album 3.png">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">$9.99</span>
+                        <button onclick="Add('Album3')" class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Album 4</span>
+                    <img class="shop-item-image" src="Images/Album 4.png">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">$19.99</span>
+                        <button onclick="Add('Album4')" class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container content-section">
+            <h2 class="section-header">MERCH</h2>
+            <div class="shop-items">
+                <div class="shop-item">
+                    <span class="shop-item-title">T-Shirt</span>
+                    <img class="shop-item-image" src="Images/Shirt.png">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">$19.99</span>
+                        <button onclick="Add('Shirt')" class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <div class="shop-item">
+                    <span class="shop-item-title">Coffee Cup</span>
+                    <img class="shop-item-image" src="Images/Cofee.png">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">$6.99</span>
+                        <button onclick="Add('Coffee')" class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container content-section">
+            <h2 class="section-header">CART</h2>
+            <div class="cart-row">
+                <span class="cart-item cart-header cart-column">ITEM</span>
+                <span class="cart-price cart-header cart-column">PRICE</span>
+                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+            </div>
+            <div id="cartItems" class="cart-items">
+            </div>
+            <div class="cart-total">
+                <strong class="cart-total-title">Total</strong>
+                <span id="Total" class="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+        </section>
+        <footer class="main-footer">
+            <div class="container main-footer-container">
+                <h3 class="band-name">The Generics</h3>
+                <ul class="nav footer-nav">
+                    <li>
+                        <a href="https://www.youtube.com" target="_blank">
+                            <img src="Images/YouTube Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.spotify.com" target="_blank">
+                            <img src="Images/Spotify Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com" target="_blank">
+                            <img src="Images/Facebook Logo.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+        <script>
+            const main = document.getElementById("cartItems")
+            var isShirt = 0
+            var isCoffee = 0
+            var isAlbum1 = 0
+            var isAlbum2 = 0
+            var isAlbum3 = 0
+            var isAlbum4 = 0
+            function CalulateTotal(){
+                const Total = document.getElementById("Total")
+                var TempL = 0
+
+                var SPrice = 0
+                var CPrice = 0
+                var A1Price = 0
+                var A2Price = 0
+                var A3Price = 0
+                var A4Price = 0
+
+                if (isShirt == 1){
+                    const ShirtPrice = document.getElementById("ShirtPrice")
+                    const ShirtQuantity = document.getElementById("ShirtQuantity")
+                    SPrice = ShirtPrice.innerHTML
+                    TempL = SPrice.length
+                    SPrice = SPrice.substring(1, TempL)
+                    SPrice = parseFloat(SPrice)
+                    var Quan = ShirtQuantity.value
+                    Quan = parseInt(Quan)
+                    SPrice = SPrice*Quan
+
+                    SPrice = SPrice*100
+                    SPrice = Math.round(SPrice)
+                    SPrice = SPrice/100
+                } 
+                if (isCoffee == 1){
+                    const CoffeePrice = document.getElementById("CoffeePrice")
+                    const CoffeeQuantity = document.getElementById("CoffeeQuantity")
+                    CPrice = CoffeePrice.innerHTML
+                    TempL = CPrice.length
+                    CPrice = CPrice.substring(1, TempL)
+                    CPrice = parseFloat(CPrice)
+                    var Quan = CoffeeQuantity.value
+                    Quan = parseInt(Quan)
+                    CPrice = CPrice*Quan
+
+                    CPrice = CPrice*100
+                    CPrice = Math.round(CPrice)
+                    CPrice = CPrice/100
+                }
+                if (isAlbum1 == 1){
+                    const Album1Price = document.getElementById("Album1Price")
+                    const Album1Quantity = document.getElementById("Album1Quantity")
+                    A1Price = Album1Price.innerHTML
+                    TempL = A1Price.length
+                    A1Price = A1Price.substring(1, TempL)
+                    A1Price = parseFloat(A1Price)
+                    var Quan = Album1Quantity.value
+                    Quan = parseInt(Quan)
+                    A1Price = A1Price*Quan
+
+                    A1Price = A1Price*100
+                    A1Price = Math.round(A1Price)
+                    A1Price = A1Price/100
+                }
+                if (isAlbum2 == 1){
+                    const Album2Price = document.getElementById("Album2Price")
+                    const Album2Quantity = document.getElementById("Album2Quantity")
+                    A2Price = Album2Price.innerHTML
+                    TempL = A2Price.length
+                    A2Price = A2Price.substring(1, TempL)
+                    A2Price = parseFloat(A2Price)
+                    var Quan = Album2Quantity.value
+                    Quan = parseInt(Quan)
+                    A2Price = A2Price*Quan
+
+                    A2Price = A2Price*100
+                    A2Price = Math.round(A2Price)
+                    A2Price = A2Price/100
+                }
+                if (isAlbum3 == 1){
+                    const Album3Price = document.getElementById("Album3Price")
+                    const Album3Quantity = document.getElementById("Album3Quantity")
+                    A3Price = Album3Price.innerHTML
+                    TempL = A3Price.length
+                    A3Price = A3Price.substring(1, TempL)
+                    A3Price = parseFloat(A3Price)
+                    var Quan = Album3Quantity.value
+                    Quan = parseInt(Quan)
+                    A3Price = A3Price*Quan
+
+                    A3Price = A3Price*100
+                    A3Price = Math.round(A3Price)
+                    A3Price = A3Price/100
+                }
+                if (isAlbum4 == 1){
+                    const Album4Price = document.getElementById("Album4Price")
+                    const Album4Quantity = document.getElementById("Album4Quantity")
+                    A4Price = Album4Price.innerHTML
+                    TempL = A4Price.length
+                    A4Price = A4Price.substring(1, TempL)
+                    A4Price = parseFloat(A4Price)
+                    var Quan = Album4Quantity.value
+                    Quan = parseInt(Quan)
+                    A4Price = A4Price*Quan
+
+                    A4Price = A4Price*100
+                    A4Price = Math.round(A4Price)
+                    A4Price = A4Price/100
+                }
+
+                var TotalValue = SPrice+CPrice+A1Price+A2Price+A3Price+A4Price
+                TotalValue = TotalValue*100
+                TotalValue = Math.round(TotalValue)
+                TotalValue = TotalValue/100
+                Total.innerHTML = "$"+TotalValue
+            }
+            function Remove(item){
+                const Item = document.getElementById(item)
+                Item.remove()
+
+                if (item == "Shirt"){
+                    isShirt = 0
+                } else if (item == "Coffee"){
+                    isCoffee = 0
+                } else if (item == "Album1"){
+                    isAlbum1 = 0
+                } else if (item == "Album2"){
+                    isAlbum2 = 0
+                } else if (item == "Album3"){
+                    isAlbum3 = 0
+                } else if (item == "Album4"){
+                    isAlbum4 = 0
+                }
+
+                CalulateTotal()
+            }
+            function Add(item){
+                const CartRow = document.createElement("div")
+                CartRow.setAttribute("class", "cart-row")
+                const CartRowItem = document.createElement("div")
+                CartRowItem.setAttribute("class", "cart-item cart-column")
+                const Image = document.createElement("img")
+                Image.setAttribute("class", "cart-item-image")
+                Image.setAttribute("width", "100%")
+                Image.setAttribute("hight", "100%")
+                const ImageTitle = document.createElement("span")
+                ImageTitle.setAttribute("class", "cart-item-title")
+                const Price = document.createElement("span")
+                Price.setAttribute("onclick", "CalculateTotal()")
+                Price.setAttribute("class", "cart-price cart-column")
+                const CartQuanity = document.createElement("div")
+                CartQuanity.setAttribute("class", "cart-quantity cart-column")
+                const NumberInput = document.createElement("input")
+                NumberInput.setAttribute("class", "cart-quantity-input")
+                NumberInput.setAttribute("type", "number")
+                const Remove = document.createElement("button")
+                Remove.setAttribute("class", "btn btn-danger")
+                Remove.setAttribute("type", "button")
+                Remove.innerHTML = "REMOVE"
+
+                function Builder(){
+                    CartRowItem.appendChild(Image)
+                    CartRowItem.appendChild(ImageTitle)
+                    CartQuanity.appendChild(NumberInput)
+                    CartQuanity.appendChild(Remove)
+
+                    CartRow.appendChild(CartRowItem)
+                    CartRow.appendChild(Price)
+                    CartRow.appendChild(CartQuanity)
+
+                    main.appendChild(CartRow)
+
+                    CalulateTotal()
+                }
+
+                if (item == "Shirt" && isShirt == 0){
+                    isShirt = 1
+
+                    Image.setAttribute("src", "Images/Shirt.png")
+                    ImageTitle.innerHTML = "T-Shirt"
+                    Price.innerHTML = "$19.99"
+                    Price.setAttribute("id", "ShirtPrice")
+                    NumberInput.setAttribute("value", 1)
+                    NumberInput.setAttribute("oninput", "CalulateTotal()")
+                    NumberInput.setAttribute("id", "ShirtQuantity")
+                    CartRow.setAttribute("id", "Shirt")
+
+                    Remove.setAttribute("onclick", "Remove('Shirt')")
+                    Builder()
+                } else if (item == "Coffee" && isCoffee == 0) {
+                    isCoffee = 1
+
+                    Image.setAttribute("src", "Images/Cofee.png")
+                    ImageTitle.innerHTML = "Coffee"
+                    Price.innerHTML = "$6.99"
+                    Price.setAttribute("id", "CoffeePrice")
+                    NumberInput.setAttribute("value", 1)
+                    NumberInput.setAttribute("oninput", "CalulateTotal()")
+                    NumberInput.setAttribute("id", "CoffeeQuantity")
+                    CartRow.setAttribute("id", "Coffee")
+                    
+                    Remove.setAttribute("onclick", "Remove('Coffee')")
+                    Builder()
+                } else if (item == "Album1" && isAlbum1 == 0) {
+                    isAlbum1 = 1
+
+                    Image.setAttribute("src", "Images/Album 1.png")
+                    ImageTitle.innerHTML = "Album 1"
+                    Price.innerHTML = "$12.99"
+                    Price.setAttribute("id", "Album1Price")
+                    NumberInput.setAttribute("value", 1)
+                    NumberInput.setAttribute("oninput", "CalulateTotal()")
+                    NumberInput.setAttribute("id", "Album1Quantity")
+                    CartRow.setAttribute("id", "Album1")
+                    
+                    Remove.setAttribute("onclick", "Remove('Album1')")
+                    Builder()
+                } else if (item == "Album2" && isAlbum2 == 0) {
+                    isAlbum2 = 1
+
+                    Image.setAttribute("src", "Images/Album 2.png")
+                    ImageTitle.innerHTML = "Album 2"
+                    Price.innerHTML = "$14.99"
+                    Price.setAttribute("id", "Album2Price")
+                    NumberInput.setAttribute("value", 1)
+                    NumberInput.setAttribute("oninput", "CalulateTotal()")
+                    NumberInput.setAttribute("id", "Album2Quantity")
+                    CartRow.setAttribute("id", "Album2")
+                    
+                    Remove.setAttribute("onclick", "Remove('Album2')")
+                    Builder()
+                } else if (item == "Album3" && isAlbum3 == 0) {
+                    isAlbum3 = 1
+
+                    Image.setAttribute("src", "Images/Album 3.png")
+                    ImageTitle.innerHTML = "Album 3"
+                    Price.innerHTML = "$9.99"
+                    Price.setAttribute("id", "Album3Price")
+                    NumberInput.setAttribute("value", 1)
+                    NumberInput.setAttribute("oninput", "CalulateTotal()")
+                    NumberInput.setAttribute("id", "Album3Quantity")
+                    CartRow.setAttribute("id", "Album3")
+                    
+                    Remove.setAttribute("onclick", "Remove('Album3')")
+                    Builder()
+                } else if (item == "Album4" && isAlbum4 == 0) {
+                    isAlbum4 = 1
+
+                    Image.setAttribute("src", "Images/Album 4.png")
+                    ImageTitle.innerHTML = "Album 4"
+                    Price.innerHTML = "$19.99"
+                    Price.setAttribute("id", "Album4Price")
+                    NumberInput.setAttribute("value", 1)
+                    NumberInput.setAttribute("oninput", "CalulateTotal()")
+                    NumberInput.setAttribute("id", "Album4Quantity")
+                    CartRow.setAttribute("id", "Album4")
+                    
+                    Remove.setAttribute("onclick", "Remove('Album4')")
+                    Builder()
+                }
+            }
+        </script>
+    </body>
+</html>
